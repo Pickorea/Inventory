@@ -23,7 +23,7 @@
                                     <!-- <div class="form-group float-left">
                                         <input type="text" class="form-control" name="search" id="search" value="{{ old('search') }}" placeholder="{{ __('Search') }}">
                                     </div> -->
-                                    <button type="button" class="btn btn-primary" id="searchBtn">@lang('Search')</button>
+                                    <!-- <button type="button" class="btn btn-primary" id="searchBtn">@lang('Search')</button> -->
                                     <a href="{{route('island.create')}}" class="btn btn-outline-info" id="exportBtn">@lang('Create')</a>
 
                               
@@ -32,44 +32,59 @@
                         </x-slot>
 
                         <x-slot name="body">
+                            <!-- our project just needs Font Awesome Solid + Brands -->
+                            <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
+                            <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
+                            <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
+                                <script src="//code.jquery.com/jquery-1.12.3.js"></script>
+                                <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+                      
                        
-                            <table class="table table-hover mx-0 table table-striped">
-                            <thead class ="table-dark">
-                            <tr>
-                                <th>Title</th>
-                                <th>Created at</th>
-                                <th>
-                                 
-                                        Action
-                                 
-                                </th>
+                            <link rel="stylesheet"
+                             href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">                     
+                        <table id="example" class="display table table-sm table table-striped" style="width:100%">
                                
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($items as $item)
-                                <tr>
+                                <thead class ="table-dark">
+                                    <tr>
+                                    <th>Island Name</th>
+                                        <th>Fish Center Name</th>
+                                        <th>Action</th>
+                            
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @forelse($items as $item)
+                                    <tr>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ date('d M Y', strtotime($item->created_at)) }}</td>
-                                    <td>
-                                        <a href="{{ route('island.show', $item->id) }}"><i class="fas fa-eye"></i> {{ __('Show') }}</a>
-                                      
-                                            <a href="{{ route('island.edit', $item->id) }}"><i class="fas fa-edit"></i> {{ __('Edit') }}</a>
-                                       
-                                    </td>
-                                   
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        {!! $items->links() !!}
-
-
+                                    <td>{{ date('d M Y', strtotime($item->created_at)) }}</td>  
+                                    <td><a href="{{ route('island.show', $item->id) }}"><i class="fas fa-eye">Show</i></a>
+                                    <a href="{{ route('island.edit', $item->id) }}"><i class="fa-solid fa-pen-to-square"></i>Edit</a>       </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td>No Stock Take for the this Island at the moments</td>
+                                    </tr>
+                                @endforelse
+                                </tbody>
+                         </table>
                         </x-slot>
                     </x-frontend.card>
                     </div><!--col-md-10-->
         </div><!--row-->
     </div><!--container-->
+    <script>
+                    $(document).ready(function () {
+                        $('#example').DataTable({
+                            pagingType: 'full_numbers',
+                            "paging":true,
+                            "ordering":true,
+                            "info":true
+                           
+                        
+                        
+                        });
+                    });
+                        </script>
 @endsection
 
 

@@ -16,7 +16,7 @@
                             <div class="col-auto">
                
                   
-                    <a href="{{ route("donor.create") }}" class="btn btn-outline-info" id="exportBtn">@lang('Create')</a>
+                    <a href="{{ route("stocktake.create") }}" class="btn btn-outline-info" id="exportBtn">@lang('Create')</a>
 
                 
             </div>
@@ -26,11 +26,11 @@
                         <x-slot name="body">
 
                             <script src="//code.jquery.com/jquery-1.12.3.js"></script>
-                        <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+                            <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
                       
                        
-                        <link rel="stylesheet"
-                            href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+                            <link rel="stylesheet"
+                             href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 
                         <table id="example" class="display table table-sm table table-striped" style="width:100%">
                                
