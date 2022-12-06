@@ -20,10 +20,7 @@
                             </div>
                             <div class="col-auto">
                                 
-                                    <!-- <div class="form-group float-left">
-                                        <input type="text" class="form-control" name="search" id="search" value="{{ old('search') }}" placeholder="{{ __('Search') }}">
-                                    </div> -->
-                                    <!-- <button type="button" class="btn btn-primary" id="searchBtn">@lang('Search')</button> -->
+                                   
                                     <a href="{{route('island.create')}}" class="btn btn-outline-info" id="exportBtn">@lang('Create')</a>
 
                               
