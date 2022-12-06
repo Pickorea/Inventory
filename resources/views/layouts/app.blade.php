@@ -33,7 +33,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                   {{--@foreach ($navbars as $navbarItem)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route($navbarItem->route) }}">{{ $navbarItem->name }}</a>
+                            </li>
+                    @endforeach--}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -67,6 +71,12 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+
+                                    @foreach ($navbars as $navbarItem)
+                     
+                                        <a class="dropdown-item" href="{{ route($navbarItem->route) }}">{{ $navbarItem->name }}</a>
+              
+                                     @endforeach
                                 </div>
                             </li>
                         @endguest

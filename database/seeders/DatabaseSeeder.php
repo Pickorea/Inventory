@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(IslandSeeder::class);
         $this->call(FishCenterSeeder::class);
         $this->call(StatusSeeder::class);
+        $this->call(NavbarSeeder::class);
     }
 }
