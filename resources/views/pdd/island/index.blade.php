@@ -44,7 +44,7 @@
                                 <thead class ="table-dark">
                                     <tr>
                                     <th>Island Name</th>
-                                        <th>Fish Center Name</th>
+                                        <th>Created at</th>
                                         <th>Action</th>
                             
                                     </tr>

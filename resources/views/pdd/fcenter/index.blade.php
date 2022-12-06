@@ -31,7 +31,8 @@
                         <script src="//code.jquery.com/jquery-1.12.3.js"></script>
                         <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
                         <link rel="stylesheet"
-                             href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">              
+                             href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">     
+
                             <table id="example" class="table table-hover mx-0 table table-striped">
                             <thead class ="table-dark">
                             <tr>
@@ -69,17 +70,17 @@
         </div><!--row-->
     </div><!--container-->
     <script>
-                    $(document).ready(function () {
-                        $('#example').DataTable({
-                            pagingType: 'full_numbers',
-                            "paging":true,
-                            "ordering":true,
-                            "info":true
-                           
-                        
-                        
-                        });
-                    });
-                        </script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                pagingType: 'full_numbers',
+                "paging":true,
+                "ordering":true,
+                "info":true
+                
+            
+            
+            });
+        });
+    </script>
 @endsection
 

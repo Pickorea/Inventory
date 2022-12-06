@@ -19,10 +19,7 @@
                             </div>
                             <div class="col-auto">
                                 
-                                    <!-- <div class="form-group float-left">
-                                        <input type="text" class="form-control" name="search" id="search" value="{{ old('search') }}" placeholder="{{ __('Search') }}">
-                                    </div> -->
-                                    <button type="button" class="btn btn-primary" id="searchBtn">@lang('Search')</button>
+                                   
                                     <a href="{{route('asset.create')}}" class="btn btn-outline-info" id="exportBtn">@lang('Create')</a>
 
                               
@@ -31,7 +28,12 @@
                         </x-slot>
 
                         <x-slot name="body">
-                            <table class="table table-hover mx-0 table-striped">
+                        <script src="//code.jquery.com/jquery-1.12.3.js"></script>
+                        <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+                        <link rel="stylesheet"
+                             href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">     
+
+                            <table  id="example" class="table table-hover mx-0  table-striped">
                             <thead class ="table-dark">
                             <tr>
                                 <th>Donor Name</th>
@@ -71,6 +73,19 @@
                     </div><!--col-md-10-->
         </div><!--row-->
     </div><!--container-->
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                pagingType: 'full_numbers',
+                "paging":true,
+                "ordering":true,
+                "info":true
+                
+            
+            
+            });
+        });
+    </script>
 @endsection
 
 @push('after-scripts')
