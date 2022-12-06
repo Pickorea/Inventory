@@ -26,19 +26,11 @@
                         <x-slot name="body">
 
                             <script src="//code.jquery.com/jquery-1.12.3.js"></script>
-                        <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-                        <script
-                            src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js">
-                        </script>
-                        <script>
-                            src="https://code.jquery.com/jquery-3.5.1.js">
-
-                        </script>
-                        <script>
-                            src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js">
-                        </script>
+                        <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+                      
+                       
                         <link rel="stylesheet"
-                            href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+                            href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 
                         <table id="example" class="display table table-sm table table-striped" style="width:100%">
                                
@@ -78,28 +70,20 @@
                                             </div><!--col-md-10-->
                                 </div><!--row-->
                             </div><!--container-->
-<!-- 
+
                             <script>
                     $(document).ready(function () {
                         $('#example').DataTable({
                             pagingType: 'full_numbers',
+                            "paging":true,
+                            "ordering":true,
+                            "info":true
                         
                         
-                        //     columnDefs: [
-                        //         {
-                        //             target: 1,
-                        //             visible: false,
-                        //             searchable: false,
-                        //         },
-                        //         {
-                        //             target: 2,
-                        //             visible: false,
-                        //         },
-                        //     ],
                         });
                     });
-                        </script> -->
-
+                        </script>
+                   
                         @endsection
 
 @push('after-scripts')
