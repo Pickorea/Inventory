@@ -30,9 +30,9 @@
 
                         <x-slot name="body">
                             <!-- our project just needs Font Awesome Solid + Brands -->
-                            <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
+                            <!-- <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
                             <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
-                            <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
+                            <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet"> -->
                                 <script src="//code.jquery.com/jquery-1.12.3.js"></script>
                                 <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
                       
