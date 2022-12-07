@@ -11,6 +11,7 @@ use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\StockTakeController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -175,6 +176,23 @@ Route::group(['middleware' => 'auth'], function ()
                 Route::get('edit', [StatusController::class, 'edit'])->name('edit');
                 Route::match(['PUT', 'PATCH'], '', [StatusController::class, 'update'])->name('update');
                 Route::delete('', [StatusController::class, 'delete'])->name('delete');
+            });
+        });
+
+
+        // comment
+
+        Route::group(['as' => 'comment.', 'prefix' => 'comment'], function () {
+            Route::get('', [CommentController::class, 'index'])->name('index');
+            Route::get('create', [CommentController::class, 'create'])->name('create');
+            Route::post('', [CommentController::class, 'store'])->name('store');
+            Route::post('datatables', [CommentController::class, 'datatables'])->name('datatables');
+            Route::get('export', [CommentController::class, 'exportlist'])->name('export');
+            Route::group(['prefix' => '{comment_id}'], function () {  //->where(['id' => '[0-9]+'])
+                Route::get('', [CommentController::class, 'show'])->name('show');
+                Route::get('edit', [CommentController::class, 'edit'])->name('edit');
+                Route::match(['PUT', 'PATCH'], '', [CommentController::class, 'update'])->name('update');
+                Route::delete('', [CommentController::class, 'delete'])->name('delete');
             });
         });
 

@@ -61,15 +61,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($items as  $item)
+                            @forelse($items as  $item)
                                 <tr>
-                                <td>{{ $item->quantity }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->unit_price }}</td>
+                                <td>{{ $item->quantity??"No donation" }}</td>
+                                <td>{{ $item->name??"No donation" }}</td>
+                                <td>{{ $item->unit_price??"No donation" }}</td>
                              
                                
                                 </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td>No donation</td>
+                            </tr>
+                            @endforelse
                             </tbody>
                         </table>
                  
