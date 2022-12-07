@@ -37,16 +37,19 @@ class CommentController extends Controller
      */
     public function store(Request $request, Island $island)
     {
+        // dd($request->all());
      if(Auth::check()){
 
-        $comment = Comment::create([
+        $comments = Comment::create([
             'body' => $request->input('body'),
             'commentable_type' => $request->input('commentable_type'),
             'commentable_id' => $request->input('commentable_id'),
             'user_id' => Auth::user()->id
         ]);
 
-        return redirect()->route('island.index');
+        // $com = Comment::find($island->id);
+
+        return redirect()->route('island.show')->withComments($comments)->withItem($island);
 
      }
     }

@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function ()
         Route::post('', [IslandController::class, 'store'])->name('store');
         Route::post('datatables', [IslandController::class, 'datatables'])->name('datatables');
         Route::get('export', [IslandController::class, 'exportlist'])->name('export');
-        Route::group(['prefix' => '{kiisland}'], function () {  //->where(['id' => '[0-9]+'])
+        Route::group(['prefix' => '{kiisland?}'], function () {  //->where(['id' => '[0-9]+'])
             Route::get('', [IslandController::class, 'show'])->name('show');
             Route::get('edit', [IslandController::class, 'edit'])->name('edit');
             Route::match(['PUT', 'PATCH'], '', [IslandController::class, 'update'])->name('update');

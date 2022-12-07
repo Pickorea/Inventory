@@ -38,6 +38,11 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
+
+     public function comment(){
+
+        return $this->belongsTo(Comment::class,'comment_id', 'id','commentable_id');
+     }
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
