@@ -9,8 +9,9 @@ use Illuminate\Http\Request;
 // use App\Http\Requests\EditRequest;
 // use App\Http\Requests\StoreShareRequest;
 // use App\Http\Requests\UpdateShareRequest;
-// use App\Http\Requests\ViewRequest;
+use App\Http\Requests\ViewRequest;
 use App\Models\Share;
+use App\Models\Island;
 use App\Models\StockItem;
 use App\Models\Asset;
 use App\Models\StockTake;
@@ -80,20 +81,37 @@ class StockTakeController extends Controller
         return view('pdd.stocktake.index', $stocktaking);
     }
 
+    public function indexoffishcenter(ViewRequest $request)
+    {
+        // dd($this->service->paginate());
+        return view(static::PREFIX_VIEW . 'fishcenter.index')
+        ->withFishcenters($this->fishCenterService->paginate());
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $request, $fishcenter_id)
     {
+        // dd($fishcenter_id);
+           $assets   = DB::table('islands')
+           ->select('fish_centers.id', 'fish_centers.name', 'shares.allocated_quantity', 'assets.name')
+           ->leftJoin('fish_centers','islands.id','=','fish_centers.island_id')
+           ->leftJoin('shares','fish_centers.id','=','shares.fish_center_id')
+           ->leftJoin('assets','assets.id','=','shares.asset_id')
+           ->where('fish_center_id','=',$fishcenter_id)
+           ->get();
+
+            // dd($this->fishCenterService->get());
      
         return view(static::PREFIX_VIEW . 'create')
             ->withItem(new StockTake())
             ->withShares($this->shareService->get())
-            ->withAssets($this->assetService->get())
+            ->withAssets($assets)
             ->withStatus($this->statusService->get())
-            ->withFishCenters($this->fishCenterService->get());
+            ->withFishCenters($this->fishCenterService->get())
+            ->withIslands(new Island());
             
     }
 

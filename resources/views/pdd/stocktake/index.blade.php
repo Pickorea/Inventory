@@ -16,7 +16,7 @@
                             <div class="col-auto">
                
                   
-                    <a href="{{ route("stocktake.create") }}" class="btn btn-outline-info" id="exportBtn">@lang('Create')</a>
+                    <a href="{{ route("stocktake.indexoffishcenter") }}" class="btn btn-outline-info" id="exportBtn">@lang('Create')</a>
 
                 
             </div>
@@ -36,8 +36,8 @@
                                
                                 <thead class ="table-dark">
                                     <tr>
-                                    <th>Island Name</th>
-                                        <th>Fish Center Name</th>
+                                        <th>Island Name</th>
+                                        <th>Item Name</th>
                                         <th>Qty Allocated</th>
                                         <th>Stock On Hand</th>
                                         <th>Missing</th>

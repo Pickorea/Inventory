@@ -19,6 +19,11 @@ class Donor extends Model
 
     }
 
+    public function comments(){
+
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public static $rules = [
         'name' => ['required','string','unique:donors'],
         'description' => ['required','string'],

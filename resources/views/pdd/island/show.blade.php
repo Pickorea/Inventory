@@ -90,7 +90,7 @@
       <a href="#">All updates</a>
     </small>
   </div>
-            </x-forms.post>
+ </x-forms.post>
             
     </div><!--col-md-10-->
         </div><!--row-->

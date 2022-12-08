@@ -35,10 +35,8 @@
             <div class="card-body">
         <form action="{{ route("stocktake.store") }}" method="POST" enctype="multipart/form-data">
             @csrf
-            
-            
-
-            <div class="card">
+          
+               <div class="card">
                 <div class="card-header">
                    Stock Take
                 </div>
@@ -57,7 +55,7 @@
                                                     {{ $fishcenter->name }} 
                                                 </option>
                                             @endforeach
-                                        </select>
+                </select>
                 @if($errors->has('fishcenter_id'))
                     <em class="invalid-feedback">
                         {{ $errors->first('fishcenter_id') }}

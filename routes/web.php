@@ -148,8 +148,8 @@ Route::group(['middleware' => 'auth'], function ()
 
         Route::group(['as' => 'stocktake.', 'prefix' => 'stocktake'], function () {
             Route::get('', [StockTakeController::class, 'index'])->name('index');
-            Route::get('donors', [StockTakeController::class, 'indexofdonors'])->name('indexofdonors');
-            Route::get('create', [StockTakeController::class, 'create'])->name('create');
+            Route::get('fishcenter', [StockTakeController::class, 'indexoffishcenter'])->name('indexoffishcenter');
+            Route::get('create/{fishcenter_id}', [StockTakeController::class, 'create'])->name('create');
             Route::post('', [StockTakeController::class, 'store'])->name('store');
             Route::post('datatables', [StockTakeController::class, 'datatables'])->name('datatables');
             Route::get('export', [StockTakeController::class, 'exportlist'])->name('export');
