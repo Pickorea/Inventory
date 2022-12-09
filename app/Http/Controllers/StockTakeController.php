@@ -111,6 +111,7 @@ class StockTakeController extends Controller
             ->withAssets($assets)
             ->withStatus($this->statusService->get())
             ->withFishCenters($this->fishCenterService->get())
+            ->withFishcenter($fishcenter_id)
             ->withIslands(new Island());
             
     }
@@ -123,6 +124,7 @@ class StockTakeController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $stocktake = new StockTake();
         $stocktake->fishcenter_id = $request->input('fishcenter_id');
         $stocktake->stock_take_date = $request->input('stock_take_date');

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('View Crime'))
+@section('title', __('View Island'))
 
 @section('content')
 <div class="container">
@@ -8,7 +8,7 @@
             <div class="col-md-10">
     <x-frontend.card>
         <x-slot name="header">
-            @lang('View') @lang('Island')
+            @lang('View') @lang('Island') @lang('Stock') @lang('Take') @lang('Status')
         </x-slot>
 
         <x-slot name="body">

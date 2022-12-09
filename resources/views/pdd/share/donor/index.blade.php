@@ -42,7 +42,7 @@
                                 <tr>
 
                                     <td>
-                                        <input type="hidden" name="donor->id" value="{{$donor->id}}" />
+                                       
                                                 
                                         <a href="{{ route('share.create', $donor->id) }}"> <input type="checkbox" name="donor->id"  value="{{$donor->id}}" @if (!$indexKey) {!! "checked" !!} @endif>  {{$donor->name}}</td> <br></a>
                                     </td>

@@ -35,18 +35,19 @@
             <div class="card-body">
         <form action="{{ route("stocktake.store") }}" method="POST" enctype="multipart/form-data">
             @csrf
-          
-               <div class="card">
+         <input type="hidden" name="fishcenter_id" value="{{$fishcenter}}" />
+         
+           <div class="card">
                 <div class="card-header">
                    Stock Take
                 </div>
 
                 <div class="card-body">
-                <div class="form-group {{ $errors->has('fishcenter_id') ? 'has-error' : '' }}">
+                {{--<div class="form-group {{ $errors->has('fishcenter_id') ? 'has-error' : '' }}">--}}
                 
 
             
-                <div class="form-group {{ $errors->has('fishcenter_id') ? 'has-error' : '' }}">
+              {{--  <div class="form-group {{ $errors->has('fishcenter_id') ? 'has-error' : '' }}">
                 <label for="customer_name">Fish Center Name*</label>
                 <select name="fishcenter_id" class="form-control">
                                             <option value="">-- CHOOSE FISH CENTER --</option>
@@ -62,7 +63,7 @@
                     </em>
                 @endif
                 
-            </div>
+            </div>--}}
 
             <div class="form-group {{ $errors->has('stock_take_date') ? 'has-error' : '' }}">
                 <label for="stoct_take_date">Stock Take Date*</label>
