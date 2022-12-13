@@ -58,25 +58,19 @@ class StockTakeController extends Controller
      */
     public function index()
     {
-        $stocktaking['items'] = DB::table("islands")
-        ->leftJoin("fish_centers", function($join){
-            $join->on("islands.id", "=", "fish_centers.island_id");
-        })
-        ->leftJoin("stock_takes", function($join){
-            $join->on("fish_centers.id", "=", "stock_takes.fishcenter_id");
-        })
-        ->leftJoin("share_stock_takes", function($join){
-            $join->on("stock_takes.id", "=", "share_stock_takes.stock_take_id");
-        })
-        ->leftJoin("assets", function($join){
-            $join->on("share_stock_takes.asset_id", "=", "assets.id");
-        })
-        ->leftJoin("shares", function($join){
-            $join->on("assets.id", "=", "shares.asset_id");
-        })
-
+        $stocktaking['items'] =DB::table('islands')
         ->select("fish_centers.name", "stock_takes.stock_take_date", "assets.name", "shares.allocated_quantity", "share_stock_takes.quantity as onhand","share_stock_takes.defects", "islands.name as island")->selectraw('shares.allocated_quantity - share_stock_takes.quantity as Missing ')
+        ->leftJoin('fish_centers','islands.id','=','fish_centers.island_id')
+        ->leftJoin('stock_takes','fish_centers.id','=','stock_takes.fishcenter_id')
+        ->leftJoin('share_stock_takes','stock_takes.id','=','share_stock_takes.stock_take_id')
+        ->leftJoin('assets','share_stock_takes.asset_id','=','assets.id')
+        ->leftJoin('shares','assets.id','=','shares.asset_id')
+        ->whereNotNull('share_stock_takes.quantity')
+        ->whereNotNull('share_stock_takes.defects')
         ->get();
+
+       
+    
 
         return view('pdd.stocktake.index', $stocktaking);
     }
@@ -95,7 +89,13 @@ class StockTakeController extends Controller
     public function create(Request $request, $fishcenter_id)
     {
         // dd($fishcenter_id);
-           $assets   = DB::table('islands')
+           $assets 
+        //  DB::table('assets')
+        // //    ->select('assets.name', 'assets.id', 'assets.quantity', 'assets.unit_price')
+        // //    ->where('assets.id', $fishcenter_id)    
+        // //    ->get();
+           
+           = DB::table('islands')
            ->select('fish_centers.id', 'fish_centers.name', 'shares.allocated_quantity', 'assets.name')
            ->leftJoin('fish_centers','islands.id','=','fish_centers.island_id')
            ->leftJoin('shares','fish_centers.id','=','shares.fish_center_id')
@@ -103,12 +103,12 @@ class StockTakeController extends Controller
            ->where('fish_center_id','=',$fishcenter_id)
            ->get();
 
-            // dd($this->fishCenterService->get());
+            // dd(   $assets );
      
         return view(static::PREFIX_VIEW . 'create')
             ->withItem(new StockTake())
             ->withShares($this->shareService->get())
-            ->withAssets($assets)
+            ->withAssets($this->assetService->get())
             ->withStatus($this->statusService->get())
             ->withFishCenters($this->fishCenterService->get())
             ->withFishcenter($fishcenter_id)

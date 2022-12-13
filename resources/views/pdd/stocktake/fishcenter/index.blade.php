@@ -29,7 +29,7 @@
                                 <tr>
 
                                     <td>
-                                        
+                                        <input type="hidden" name="fishcenter_id" value="{{$fishcenter->id}}" />
                                                 
                                         <a href="{{ route('stocktake.create', $fishcenter->id) }}"> <input type="checkbox" name="fishcenter->id"  value="{{$fishcenter->id}}" @if (!$indexKey) {!! "checked" !!} @endif>  {{$fishcenter->name}}</td> <br></a>
                                     </td>
