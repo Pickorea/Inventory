@@ -19,6 +19,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Stock Take Date</th>
                                     <th scope="col">Comments</th>
+                                    <th scope="col">View As</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -28,6 +29,7 @@
                                     <th scope="row">{{$key+1}}</th>
                                     <td>{{ $thing['stock_take_date'] }}</td>
                                     <td>{{ $thing['comments'] }}</td>
+                                    <td><a href="{{ route('report.islandstocktakepdf',  [$item->id, $thing['stock_take_date']]) }}" >PDF</a> </td>
                                     </tr>
                                     @empty
                                     <tr>

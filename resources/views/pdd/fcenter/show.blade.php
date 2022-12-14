@@ -31,8 +31,8 @@
                             <tbody>
                           
                                 <tr>
-                             
-                                     <td>{{ dd($item)->name}}</td>
+                                {{--{{ dd($item)->name}}--}}
+                                     <td>{{ $item->name}}</td>
                                      <td>{{ date('d M Y', strtotime($item->created_at)) }}</td>
                                     <td>
                                         

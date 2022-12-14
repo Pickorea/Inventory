@@ -2,6 +2,9 @@
 
 @section('title', __('Islands').' '.__('Dashboard'))
 
+@push('after-styles')
+    <link media="all" type="text/css" rel="stylesheet" href="{{ url('/') }}/css/dataTables.bootstrap4.min.css" />
+@endpush
 
 @section('content')
 <div class="container">
@@ -12,13 +15,23 @@
                         <div class="row">
 
                             <div class="col">
-                                <h3>@lang('Fish Centers')</h3>
+                                <h3>@lang('Donors donates Assets/Items')</h3>
                             </div>
-                             </div>
+                           {{--<div class="col-auto">
+                <form method="POST" id="search-form" class="form-inline" role="form">
+                    <div class="form-group float-right">
+                        <input type="text" class="form-control" name="search" id="search" value="{{ old('search') }}" placeholder="{{ __('Search') }}">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="searchBtn">@lang('Search')</button>
+                    <a href="{{ route("donor.create") }}" class="btn btn-outline-info" id="exportBtn">@lang('Create')</a>
+
+                </form>
+            </div>--}}
+                        </div>
                         </x-slot>
 
                         <x-slot name="body">
-                            <table class="table table-hover mx-0">
+                        <table class="table table-hover mx-0">
                                 <tr>
                                     <th class ="table-dark">
                                         Names of FishCenter
@@ -31,7 +44,7 @@
                                     <td>
                                         <input type="hidden" name="fishcenter_id" value="{{$fishcenter->id}}" />
                                                 
-                                        <a href="{{ route('stocktake.create', $fishcenter->id) }}"> <input type="checkbox" name="fishcenter->id"  value="{{$fishcenter->id}}" @if (!$indexKey) {!! "checked" !!} @endif>  {{$fishcenter->name}}</td> <br></a>
+                                        <a href="{{ route('stocktake.create', $fishcenter->id) }}"> <input type="checkbox" name="fishcenter->id"  value="{{$fishcenter->id}}" @if (!$indexKey) {!! "unchecked" !!} @endif>  {{$fishcenter->name}}</td></a>
                                     </td>
                                
                                 </tr>

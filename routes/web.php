@@ -135,9 +135,10 @@ Route::group(['middleware' => 'auth'], function ()
         Route::post('', [ReportsController::class, 'store'])->name('store');
         Route::post('datatables', [ReportsController::class, 'datatables'])->name('datatables');
         Route::get('export', [ReportsController::class, 'exportlist'])->name('export');
-        Route::group(['prefix' => '{reports_id}'], function () {  //->where(['id' => '[0-9]+'])
+        Route::group(['prefix' => '{reports_id}/{stock_take_date}'], function () {  //->where(['id' => '[0-9]+'])
             Route::get('', [ReportsController::class, 'AssetDonatedReportPdf'])->name('showpdf');
             Route::get('shares', [ReportsController::class, 'SharesAssetReportPdf'])->name('sharespdf');
+            Route::get('stocktake', [ReportsController::class, 'islandStockTakepdf'])->name('islandstocktakepdf');
             Route::get('edit', [ReportsController::class, 'edit'])->name('edit');
             Route::match(['PUT', 'PATCH'], '', [ReportsController::class, 'update'])->name('update');
             Route::delete('', [ReportsController::class, 'delete'])->name('delete');

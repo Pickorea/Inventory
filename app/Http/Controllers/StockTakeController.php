@@ -58,7 +58,7 @@ class StockTakeController extends Controller
      */
     public function index()
     {
-        $stocktaking['items'] =DB::table('islands')
+        $stocktaking['items'] = DB::table('islands')
         ->select("fish_centers.name", "stock_takes.stock_take_date", "assets.name", "shares.allocated_quantity", "share_stock_takes.quantity as onhand","share_stock_takes.defects", "islands.name as island")->selectraw('shares.allocated_quantity - share_stock_takes.quantity as Missing ')
         ->leftJoin('fish_centers','islands.id','=','fish_centers.island_id')
         ->leftJoin('stock_takes','fish_centers.id','=','stock_takes.fishcenter_id')
@@ -176,6 +176,8 @@ class StockTakeController extends Controller
     {
         //
     }
+
+   
 
     /**
      * Show the form for editing the specified resource.
