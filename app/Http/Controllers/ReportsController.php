@@ -6,6 +6,7 @@ use App\Services\Reports\Implementations\IMAssetDonatedReportServices;
 use App\Models\Donor;
 use App\Models\Island;
 use App\Models\StockTake;
+use App\Models\FishCenter;
 use DB;
 
 use Illuminate\Http\Request;
@@ -85,17 +86,27 @@ class ReportsController extends Controller
     public function islandStockTakepdf(int $id, $date)
     {
         $island = Island::select('name')->find($id);
+        $fishcenter_id =DB::table('islands')
+        // $fi = (int) $fishcenter_id;
+        ->select('shares.fish_center_id')
+        ->leftJoin('fish_centers','islands.id','=','fish_centers.island_id')
+        ->leftJoin('shares','shares.fish_center_id','=','fish_centers.id')
+        ->whereNotNull('shares.fish_center_id')->where('islands.id', $id)
+        ->value('shares.fish_center_id');
+        // dd( $fishcenter_id);
         $stocktake = StockTake::select('stock_take_date')->find($id);
         $items = DB::table('islands')
-        ->select("fish_centers.name", "stock_takes.stock_take_date", "assets.name", "shares.allocated_quantity", "share_stock_takes.quantity as onhand","share_stock_takes.defects", "islands.name as island")->selectraw('shares.allocated_quantity - share_stock_takes.quantity as Missing ')
+        ->select("fish_centers.name", "stock_takes.stock_take_date", "assets.name", "shares.allocated_quantity", "share_stock_takes.quantity as onhand","share_stock_takes.defects", "islands.name as island","fish_centers.id")->selectraw('shares.allocated_quantity - share_stock_takes.quantity as Missing ')
         ->leftJoin('fish_centers','islands.id','=','fish_centers.island_id')
         ->leftJoin('stock_takes','fish_centers.id','=','stock_takes.fishcenter_id')
         ->leftJoin('share_stock_takes','stock_takes.id','=','share_stock_takes.stock_take_id')
         ->leftJoin('assets','share_stock_takes.asset_id','=','assets.id')
-        ->leftJoin('shares','assets.id','=','shares.asset_id')
+        ->leftJoin('shares','assets.id','=','shares.asset_id')->where('shares.fish_center_id', $fishcenter_id)
         ->whereNotNull('share_stock_takes.quantity')
         ->whereNotNull('share_stock_takes.defects')->where('islands.id',$id)->whereDate('stock_takes.stock_take_date','=', $date)
         ->get();
+
+       
 
         $pdf= PDF::loadView('pdd.reports.stocktake.islandStockTakepdf',['items' => $items, 'island' =>  $island, 'stocktake' =>  $stocktake])->setOptions(['defaultFont' => 'sans-serif']);
         

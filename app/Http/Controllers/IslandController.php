@@ -9,6 +9,7 @@ use App\Http\Requests\StoreIslandRequest;
 use App\Http\Requests\UpdateIslandRequest;
 use App\Http\Requests\ViewRequest;
 use App\Models\Island;
+use App\Models\FishCenter;
 use App\Pdd\Services\IslandService;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -40,6 +41,7 @@ class IslandController extends Controller
      */
     public function index(ViewRequest $request)
     {
+        
         return view(static::PREFIX_VIEW . 'index')
         ->withItems($this->service->paginate());
     }
@@ -73,8 +75,15 @@ class IslandController extends Controller
      * @param Island $kiisland
      * @return mixed
      */
-    public function show(ViewRequest $request, Island $kiisland)
+    public function show(ViewRequest $request, Island $kiisland, FishCenter $fishcenter)
     {
+        $data['island'] = Island::with('fishcenters','shares')->where('fishcenters.island_id', $kiisland);
+        // dd($data['island']);
+
+        $data['share'] = Island::with('fishcenters')->get();
+
+
+
         return view(static::PREFIX_VIEW . 'show')
             ->withItem($kiisland);
     }

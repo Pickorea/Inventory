@@ -159,7 +159,7 @@ padding: 10px;
 <body>
 
 
-<h2>Stock Take  for the Island of {{$island->name}} dated  [{{$stocktake->stock_take_date}}] </h2>
+<h2>Stock Take  for the Island of {{$island->name}} dated  [] </h2>
 <hr>
 <div class="flex flex-col">
   <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
