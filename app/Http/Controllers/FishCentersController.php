@@ -13,6 +13,7 @@ use App\Pdd\Services\FishCenterService;
 use App\Pdd\Services\IslandService;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class FishCentersController extends Controller
@@ -76,10 +77,17 @@ class FishCentersController extends Controller
      * @param FishCenter $FishCenter
      * @return mixed
      */
-    public function show(ViewRequest $request, FishCenter $fishCenter)
+    public function show(ViewRequest $request, $fishCenter)
     {
+        $fishCer = DB::table('fish_centers')
+        ->select('fish_centers.name as fishCenterName', 'assets.name as assetName', 'shares.allocated_quantity')
+        ->leftJoin('shares','fish_centers.id','=','shares.fish_center_id')
+        ->leftJoin('assets','assets.id','=','shares.asset_id')
+        ->where('fish_centers.name','=',$fishCenter)
+        ->get();
+            // dd($fishCer);
         return view(static::PREFIX_VIEW . 'show')
-            ->withItem($fishCenter);
+            ->withItem($fishCer);
     }
 
     /**

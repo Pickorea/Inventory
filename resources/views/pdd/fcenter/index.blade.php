@@ -51,7 +51,7 @@
                                      <td>{{ $item->island->name }}</td>
                                      <td>{{ date('d M Y', strtotime($item->created_at)) }}</td>
                                     <td>
-                                        <a href="{{ route('fishcenter.show', $item->id) }}"><i class="fas fa-eye">Show</i></a>
+                                        <a href="{{ route('fishcenter.show', $item->name) }}"><i class="fas fa-eye">Show</i></a>
                                  
                                             <a href="{{ route('fishcenter.edit', $item->id) }}"><i class="fas fa-edit">Edit</i></a>
                                  

@@ -12,14 +12,14 @@
         </x-slot>
 
         <x-slot name="body">
-            <div class=""><label>@lang('Name')</label><p>{{ $item->name }}</p></div>
+            <div class=""><label>@lang('Name')</label><p></p></div>
             <table class="table table-hover mx-0">
                             <thead class ="table-light">
                             <tr>
                                
-                                <th>Island Name</th>
-                                <th>Created at</th>
-                                <th>Action</th>
+                                <th>Fish Center Name</th>
+                                <th>Asset Name</th>
+                                <th>Quantity Allocated</th>
                                 <th>
                                  
                                         <a href="{{ route('fishcenter.create') }}"><i class="fas fa-plus"></i></a>
@@ -29,18 +29,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                          
+                            @foreach ($item as $object)
                                 <tr>
-                                {{--{{ dd($item)->name}}--}}
-                                     <td>{{ $item->name}}</td>
-                                     <td>{{ date('d M Y', strtotime($item->created_at)) }}</td>
-                                    <td>
-                                        
-                                 
-                                    </td>
-                                 
+                                                 
+                                <td>{{ $object->fishCenterName}}</td>
+                                <td>{{ $object->assetName}}</td>
+                                <td>{{ $object->allocated_quantity}}</td>
+                          
                                 </tr>
-                        
+                                @endforeach
                             </tbody>
                         </table>
         </x-slot>
