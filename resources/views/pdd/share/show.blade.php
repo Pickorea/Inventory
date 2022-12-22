@@ -69,11 +69,11 @@
                             
                                 <td>{{ $item->asset }}</td>
                                 <td>{{ date('d M Y', strtotime($item->share_date)) }}</td>
-                                <td>
-                                                                         
-                                        <a href="{{ route('report.sharespdf',  $item->id) }}" class="btn btn-outline-info" id="exportBtn">@lang('PDF')</a>
+                               {{-- <td>
+                                        <form action="{{ route('report.sharespdf', $item->share_date) }}"> <a href="{{ route('report.sharespdf', $item->share_date) }}" class="btn btn-outline-info" id="exportBtn">@lang('PDF')</a></form>                                 
+                                       
                                  
-                                 </td>
+                                 </td>--}}
                                
                                 </tr>
                             @endforeach

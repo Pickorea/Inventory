@@ -90,17 +90,14 @@ class StockTakeController extends Controller
     {
         // dd($fishcenter_id);
            $assets 
-        //  DB::table('assets')
-        // //    ->select('assets.name', 'assets.id', 'assets.quantity', 'assets.unit_price')
-        // //    ->where('assets.id', $fishcenter_id)    
-        // //    ->get();
+      
            
            = DB::table('islands')
            ->select('fish_centers.id', 'fish_centers.name', 'shares.allocated_quantity', 'assets.name')
            ->leftJoin('fish_centers','islands.id','=','fish_centers.island_id')
            ->leftJoin('shares','fish_centers.id','=','shares.fish_center_id')
            ->leftJoin('assets','assets.id','=','shares.asset_id')
-           ->where('fish_center_id','=',$fishcenter_id)
+           ->where('fish_center_id','=',$fishcenter_id)->where('shares.fish_center_id', $fishcenter_id)
            ->get();
 
             // dd(   $assets );

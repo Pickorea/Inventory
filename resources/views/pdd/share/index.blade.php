@@ -55,9 +55,9 @@
                                     <td>{{ date('d M Y', strtotime($item->share_date)) }}</td>
                               
                                     <td>
-                                        <a href="{{ route('share.show', $item->id) }}"><i class="fas fa-eye">{{ __('Show') }}</i></a>
+                                        <a href="{{ route('share.show', $item->share_date) }}"><i class="fas fa-eye">{{ __('Show') }}</i></a>
                                     
-                                            <a href="{{ route('share.edit', $item->id) }}"><i class="fas fa-edit">{{ __('Edit') }}</i></a>
+                                        <a href="{{ route('share.edit', $item->share_date) }}"><i class="fas fa-edit">{{ __('Edit') }}</i></a>
                                  
                                     </td>
                                     

@@ -136,8 +136,10 @@ class ShareController extends Controller
      * INNER join asset_share on shares.id = asset_share.share_id INNER join assets on assets.id = asset_share.share_id where shares.id = 1
      */
    
-    public function show(ViewRequest $request)
+    public function show(ViewRequest $request, $date)
     {
+    //    $dd = $request->all();
+    //    dd($date);
       
           $w = DB::table("assets")
           ->Join("shares", function($join){
@@ -146,9 +148,11 @@ class ShareController extends Controller
           ->Join("fish_centers", function($join){
               $join->on("shares.fish_center_id", "=", "fish_centers.id");
           })
-          ->select("assets.name as asset", "shares.id","shares.allocated_quantity as allocated_quantity", "fish_centers.name as center", "shares.share_date")->groupBy('shares.id','center','allocated_quantity','asset','shares.share_date')
+          ->select("assets.name as asset", "shares.id","shares.allocated_quantity as allocated_quantity", "fish_centers.name as center", "shares.share_date")->groupBy('shares.id','center','allocated_quantity','asset','shares.share_date')->where('shares.share_date',$date)
         //   ->where("shares.id", "=", $id)
           ->get();
+
+        //   dd($w);
              return view(static::PREFIX_VIEW . 'show')
             ->withItems($w);
     }
